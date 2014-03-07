@@ -853,6 +853,7 @@ int handle_guest_syscalls() {
                       void* buffer = calloc(1,no_of_bytes);
                 mem_read(isa_mem, address, no_of_bytes, buffer);
                 pwrite(wfile, buffer, no_of_bytes, read_write_pos);
+                printf("%d:buffer\n",*((int*)buffer));
                 // ctx_set_status(isa_ctx,  ctx_blocked);
             }
     
@@ -874,6 +875,7 @@ int handle_guest_syscalls() {
             int timeTaken = dk_get_time(read_write_pos);
             timeTaken = timeTaken + no_of_bytes/10;
             io_int->ito = no_instructions + timeTaken;
+            printf("interrupt to occur at: %d\n", io_int->ito);
             dk_update_head(read_write_pos + no_of_bytes/10);
 
             io_int->type = op;

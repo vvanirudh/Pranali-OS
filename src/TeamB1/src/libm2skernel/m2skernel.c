@@ -137,7 +137,7 @@ void ke_init(void)
 {
 	uint32_t endian = 0x44332211;
 	unsigned char *pendian = (unsigned char *) &endian;
-
+	no_instructions = 0;
 	/* Endian check */
 	if (pendian[0] != 0x11 || pendian[3] != 0x44)
 		fatal("cannot run kernel on a big endian machine");
@@ -203,12 +203,17 @@ void ke_run(void)
 			if((no_instructions == get_least_interrupt_time()) && least_interrupt!=NULL){
 				struct interrupt_t* curr_interrupt = get_least_interrupt();
 				curr_interrupt->details->p_ctx->blocked = 0;
+
+				printf("program with pid %d unblocked at %d\n",curr_interrupt->details->p_ctx->pid,no_instructions);
+
+
 				delete_interrupt(curr_interrupt);
 			}
 
 			if(!ctx->blocked){
 				ctx_execute_inst(ctx);
 				no_instructions++;
+				printf("%d,%d\n",ctx->pid,no_instructions);
 			}	
 			if (ctx!=ke->running_list_head)
 				break;

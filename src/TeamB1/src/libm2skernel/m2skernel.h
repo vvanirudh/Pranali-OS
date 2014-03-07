@@ -51,8 +51,7 @@ int instr_slice;
 /* Maximum length for paths */
 #define MAX_PATH_SIZE  200
 
-
-static uint64_t no_instructions = 0;
+uint64_t no_instructions;
 int heads, tracks, sectors;
 /* Memory */
 

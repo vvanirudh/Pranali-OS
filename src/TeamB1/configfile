@@ -1,5 +1,10 @@
 
 [ Context 0 ]
-Exe = test/a.out
+Exe = test/inf_loop
 
-Uid = 1
+Uid = 123
+
+[ Context 1 ]
+Exe = test/test1
+
+Uid = 234

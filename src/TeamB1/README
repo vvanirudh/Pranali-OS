@@ -1,0 +1,18 @@
+Team ID - B1
+
+Anirudh Vemula - 110050055
+K. Vinod Reddy - 110050060
+Nishant Nori - 110050056
+Harsha Vardhan - 110050067
+Shital Godara - 110050014
+Dev Narayan - 110050032
+
+Q) What we have done?
+A) 	1. We have added the I/O interrupt capability. 
+	2. We are able to block the process when I/O starts.
+	But, we have not tested if the code is working.
+	
+	Implementation details:
+	1. Created a struct for interrupts called interrupt_t.
+	2. Created a struct for disk condition called disk_t.
+	3. Changed the status of the program to blocked in the system call handler for read/write system calls.

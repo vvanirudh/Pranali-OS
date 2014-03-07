@@ -464,6 +464,7 @@ extern int ctx_debug_category;
 struct ctx_t {
 	
 	/* Context properties */
+	int blocked;
 	int status;
 	int pid;  /* Context id */
 	int mid;  /* Memory id - the same for contexts sharing memory map */

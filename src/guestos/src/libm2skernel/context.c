@@ -54,6 +54,7 @@ static struct ctx_t *ctx_do_create()
 	ctx = calloc(1, sizeof(struct ctx_t));
 	ctx->pid = ke->current_pid++;
 	ctx->instr_slice = instr_slice;
+	ctx->blocked = 0;
 
 	/* Update status so that the context is inserted in the
 	 * corresponding lists. The ctx_running parameter has no

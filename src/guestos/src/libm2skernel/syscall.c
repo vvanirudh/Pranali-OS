@@ -853,7 +853,7 @@ int handle_guest_syscalls() {
                       void* buffer = calloc(1,no_of_bytes);
                 mem_read(isa_mem, address, no_of_bytes, buffer);
                 pwrite(wfile, buffer, no_of_bytes, read_write_pos);
-                ctx_set_status(isa_ctx,  ctx_suspended | ctx_write);
+                // ctx_set_status(isa_ctx,  ctx_blocked);
             }
     
             else {
@@ -863,8 +863,10 @@ int handle_guest_syscalls() {
                   void* buffer = calloc(1,no_of_bytes);
                   pread(rfile, buffer, no_of_bytes, read_write_pos);
                  mem_write(isa_mem, address, no_of_bytes, buffer);
-                 ctx_set_status(isa_ctx, ctx_suspended | ctx_read);
+                 // ctx_set_status(isa_ctx, ctx_blocked);
             }
+
+            isa_ctx->blocked = 1;
 
             interrupt_t * io_int;
             io_int = calloc(1, sizeof(interrupt_t));
